@@ -1,0 +1,494 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #2a2a2a;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: #00f7ff;
+}
+
+nav a {
+    color: #d3d3d3;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #00f7ff;
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.cart-icon i {
+    font-size: 24px;
+    color: #00f7ff;
+}
+
+.cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ff4d4d;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.slideshow {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin-top: 70px;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    display: flex;
+    opacity: 1;
+}
+
+.slide h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.slide p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.slide button {
+    background-color: #00f7ff;
+    border: none;
+    padding: 10px 20px;
+    color: #1a1a1a;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.slide button:hover {
+    transform: scale(1.05);
+    background-color: #00d4db;
+}
+
+.dots {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: #d3d3d3;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #00f7ff;
+}
+
+section {
+    padding: 100px 30px 50px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    color: #00f7ff;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    color: #00f7ff;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.product-card button {
+    background-color: #00f7ff;
+    border: none;
+    padding: 10px 20px;
+    color: #1a1a1a;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.product-card button:hover {
+    transform: scale(1.05);
+    background-color: #00d4db;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    color: #00f7ff;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #3a3a3a;
+    margin-bottom: 10px;
+}
+
+.cart-item-details {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.cart-item-price {
+    color: #00f7ff;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item-quantity button {
+    background-color: #3a3a3a;
+    border: none;
+    color: #ffffff;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.cart-item-quantity button:hover {
+    background-color: #00f7ff;
+    color: #1a1a1a;
+}
+
+.cart-item-quantity span {
+    min-width: 30px;
+    text-align: center;
+}
+
+.remove-btn {
+    background-color: #ff4d4d;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.remove-btn:hover {
+    background-color: #e60000;
+}
+
+.cart-total {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #3a3a3a;
+    text-align: right;
+    font-size: 18px;
+    color: #00f7ff;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #d3d3d3;
+    cursor: pointer;
+}
+
+.checkout-btn {
+    background-color: #00f7ff;
+    border: none;
+    padding: 10px 20px;
+    color: #1a1a1a;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.checkout-btn:hover {
+    transform: scale(1.05);
+    background-color: #00d4db;
+}
+
+form {
+    display: grid;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+form label {
+    font-size: 16px;
+    color: #d3d3d3;
+}
+
+form input, form textarea, form select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3a3a3a;
+    color: white;
+    font-size: 16px;
+}
+
+form button {
+    background-color: #00f7ff;
+    border: none;
+    padding: 10px 20px;
+    color: #1a1a1a;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+form button:hover {
+    transform: scale(1.05);
+    background-color: #00d4db;
+}
+
+.feedback-list {
+    margin-top: 30px;
+}
+
+.feedback-item {
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.contact-info {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+footer {
+    background-color: #2a2a2a;
+    padding: 30px 20px;
+    text-align: center;
+    color: #d3d3d3;
+}
+
+footer .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: #00f7ff;
+    margin-bottom: 10px;
+}
+
+footer p {
+    margin-bottom: 20px;
+}
+
+footer a {
+    color: #d3d3d3;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #00f7ff;
+}
+
+.social-icons a {
+    font-size: 24px;
+    margin: 0 10px;
+    color: #d3d3d3;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #00f7ff;
+}
+
+@media (max-width: 768px) {
+    .slideshow {
+        height: 300px;
+    }
+
+    .slide h2 {
+        font-size: 24px;
+    }
+
+    .slide p {
+        font-size: 14px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav a {
+        margin: 0 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .slideshow {
+        height: 200px;
+    }
+
+    .slide h2 {
+        font-size: 18px;
+    }
+
+    .slide p {
+        font-size: 12px;
+    }
+} 
