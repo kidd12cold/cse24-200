@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Cyber Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 30px 50px 30px;
+        }
+
+        .order-summary {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .checkout-form {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #d3d3d3;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #3a3a3a;
+            border-radius: 5px;
+            background-color: #3a3a3a;
+            color: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00f7ff;
+        }
+
+        .form-group .error {
+            color: #ff4d4d;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .payment-method {
+            margin-top: 20px;
+        }
+
+        .payment-method label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .credit-card-details {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #3a3a3a;
+            border-radius: 5px;
+        }
+
+        .credit-card-details.active {
+            display: block;
+        }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+        }
+
+        .place-order-btn {
+            background-color: #00f7ff;
+            color: #1a1a1a;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .place-order-btn:hover {
+            background-color: #00d4db;
+        }
+
+        .place-order-btn:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
+
+        .empty-cart-message {
+            text-align: center;
+            padding: 20px;
+            color: #d3d3d3;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Cyber Tech</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="phones.html">Phones</a>
+            <a href="laptops.html">Laptops</a>
+            <a href="tablets.html">Tablets</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </div>
+    </header>
+
+    <div class="checkout-container">
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div id="checkoutItems"></div>
+        </div>
+
+        <div class="checkout-form">
+            <h2>Shipping Information</h2>
+            <form id="checkoutForm" onsubmit="return handleCheckout(event)">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required pattern="[A-Za-z ]+" title="Please enter a valid name (letters and spaces only)">
+                    <div class="error" id="fullNameError">Please enter a valid name</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                    <div class="error" id="emailError">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number">
+                    <div class="error" id="phoneError">Please enter a valid 10-digit phone number</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" required>
+                    <div class="error" id="addressError">Please enter your address</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" required pattern="[A-Za-z ]+" title="Please enter a valid city name">
+                    <div class="error" id="cityError">Please enter a valid city name</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" id="state" required pattern="[A-Za-z ]+" title="Please enter a valid state name">
+                    <div class="error" id="stateError">Please enter a valid state name</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="zipCode">ZIP Code</label>
+                    <input type="text" id="zipCode" required pattern="[0-9]{5}" title="Please enter a valid 5-digit ZIP code">
+                    <div class="error" id="zipCodeError">Please enter a valid 5-digit ZIP code</div>
+                </div>
+
+                <div class="payment-method">
+                    <h3>Payment Method</h3>
+                    <label>
+                        <input type="radio" name="payment" value="credit" required onchange="toggleCreditCardDetails(true)">
+                        Credit Card
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value="paypal" onchange="toggleCreditCardDetails(false)">
+                        PayPal
+                    </label>
+
+                    <div id="creditCardDetails" class="credit-card-details">
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" pattern="[0-9]{16}" title="Please enter a valid 16-digit card number">
+                            <div class="error" id="cardNumberError">Please enter a valid 16-digit card number</div>
+                        </div>
+                        <div class="card-row">
+                            <div class="form-group">
+                                <label for="expiryDate">Expiry Date (MM/YY)</label>
+                                <input type="text" id="expiryDate" pattern="(0[1-9]|1[0-2])\/([0-9]{2})" title="Please enter a valid expiry date (MM/YY)">
+                                <div class="error" id="expiryDateError">Please enter a valid expiry date</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" pattern="[0-9]{3,4}" title="Please enter a valid CVV">
+                                <div class="error" id="cvvError">Please enter a valid CVV</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="place-order-btn" id="placeOrderBtn">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="cart.js"></script>
+    <script>
+        function displayCheckoutItems() {
+            const checkoutItems = document.getElementById("checkoutItems");
+            checkoutItems.innerHTML = "";
+
+            if (cart.length === 0) {
+                checkoutItems.innerHTML = `
+                    <div class="empty-cart-message">
+                        <p>Your cart is empty</p>
+                        <a href="index.html" style="color: #00f7ff; text-decoration: none;">Continue Shopping</a>
+                    </div>
+                `;
+                document.getElementById("placeOrderBtn").disabled = true;
+                return;
+            }
+
+            let total = 0;
+            let totalItems = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                totalItems += item.quantity;
+
+                const div = document.createElement("div");
+                div.className = "cart-item";
+                div.innerHTML = `
+                    <div class="cart-item-details">
+                        <span class="cart-item-name">${item.name}</span>
+                        <span class="cart-item-price">$${item.price}</span>
+                        <span class="cart-item-quantity">x${item.quantity}</span>
+                    </div>
+                `;
+                checkoutItems.appendChild(div);
+            });
+
+            const totalDiv = document.createElement("div");
+            totalDiv.className = "cart-total";
+            totalDiv.innerHTML = `
+                <div>Total Items: ${totalItems}</div>
+                <strong>Total: $${total.toFixed(2)}</strong>
+            `;
+            checkoutItems.appendChild(totalDiv);
+        }
+
+        function toggleCreditCardDetails(show) {
+            const creditCardDetails = document.getElementById("creditCardDetails");
+            const cardInputs = creditCardDetails.querySelectorAll("input");
+            
+            if (show) {
+                creditCardDetails.classList.add("active");
+                cardInputs.forEach(input => input.required = true);
+            } else {
+                creditCardDetails.classList.remove("active");
+                cardInputs.forEach(input => input.required = false);
+            }
+        }
+
+        function validateForm() {
+            let isValid = true;
+            const form = document.getElementById("checkoutForm");
+            const inputs = form.querySelectorAll("input[required]");
+
+            inputs.forEach(input => {
+                const errorElement = document.getElementById(input.id + "Error");
+                if (!input.checkValidity()) {
+                    errorElement.style.display = "block";
+                    isValid = false;
+                } else {
+                    errorElement.style.display = "none";
+                }
+            });
+
+            // Additional validation for credit card if selected
+            if (document.querySelector('input[name="payment"]:checked').value === "credit") {
+                const cardNumber = document.getElementById("cardNumber");
+                const expiryDate = document.getElementById("expiryDate");
+                const cvv = document.getElementById("cvv");
+
+                if (!cardNumber.checkValidity()) {
+                    document.getElementById("cardNumberError").style.display = "block";
+                    isValid = false;
+                }
+                if (!expiryDate.checkValidity()) {
+                    document.getElementById("expiryDateError").style.display = "block";
+                    isValid = false;
+                }
+                if (!cvv.checkValidity()) {
+                    document.getElementById("cvvError").style.display = "block";
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
+        function handleCheckout(event) {
+            event.preventDefault();
+            
+            if (!validateForm()) {
+                return false;
+            }
+
+            // Get form data
+            const formData = {
+                fullName: document.getElementById("fullName").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                address: document.getElementById("address").value,
+                city: document.getElementById("city").value,
+                state: document.getElementById("state").value,
+                zipCode: document.getElementById("zipCode").value,
+                paymentMethod: document.querySelector('input[name="payment"]:checked').value
+            };
+
+            // Add credit card details if credit card payment
+            if (formData.paymentMethod === "credit") {
+                formData.cardNumber = document.getElementById("cardNumber").value;
+                formData.expiryDate = document.getElementById("expiryDate").value;
+                formData.cvv = document.getElementById("cvv").value;
+            }
+
+            // Here you would typically send this data to your server
+            // For now, we'll just show a success message
+            alert("Order placed successfully! Thank you for shopping with Cyber Tech.");
+            
+            // Clear cart and redirect to home
+            localStorage.removeItem('cart');
+            window.location.href = 'index.html';
+            
+            return false;
+        }
+
+        // Initialize checkout page
+        document.addEventListener('DOMContentLoaded', () => {
+            displayCheckoutItems();
+            updateCartCount();
+        });
+    </script>
+</body>
+</html> 

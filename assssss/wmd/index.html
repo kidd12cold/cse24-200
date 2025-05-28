@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Tech - Tech Products</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Cyber Tech</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="phones.html">Phones</a>
+            <a href="laptops.html">Laptops</a>
+            <a href="tablets.html">Tablets</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </div>
+    </header>
+
+    <div class="slideshow" id="home">
+        <div class="slide active" style="background-image: url('https://via.placeholder.com/1200x500.png?text=Deal+1+-+iPhone+14+Pro+($799)')">
+            <h2>iPhone 14 Pro - $799</h2>
+            <p>Save $200 on the latest iPhone!</p>
+            <button onclick="window.location.href='#products'">Shop Now</button>
+        </div>
+        <div class="slide" style="background-image: url('https://via.placeholder.com/1200x500.png?text=Deal+2+-+MacBook+Air+($999)')">
+            <h2>MacBook Air - $999</h2>
+            <p>Lightweight and powerful, now $300 off!</p>
+            <button onclick="window.location.href='#products'">Shop Now</button>
+        </div>
+        <div class="slide" style="background-image: url('https://via.placeholder.com/1200x500.png?text=Deal+3+-+iPad+Pro+($699)')">
+            <h2>iPad Pro - $699</h2>
+            <p>Perfect for work and play, save $150!</p>
+            <button onclick="window.location.href='#products'">Shop Now</button>
+        </div>
+        <div class="dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    </div>
+
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200.png?text=iPhone+14+Pro" alt="iPhone 14 Pro">
+                <h3>iPhone 14 Pro</h3>
+                <p>$799</p>
+                <button onclick="addToCart('iPhone 14 Pro', 799)">Add to Cart</button>
+                <button onclick="buyNow('iPhone 14 Pro', 799)">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200.png?text=MacBook+Air" alt="MacBook Air">
+                <h3>MacBook Air</h3>
+                <p>$999</p>
+                <button onclick="addToCart('MacBook Air', 999)">Add to Cart</button>
+                <button onclick="buyNow('MacBook Air', 999)">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200.png?text=iPad+Pro" alt="iPad Pro">
+                <h3>iPad Pro</h3>
+                <p>$699</p>
+                <button onclick="addToCart('iPad Pro', 699)">Add to Cart</button>
+                <button onclick="buyNow('iPad Pro', 699)">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200.png?text=Wireless+EarBuds" alt="Wireless EarBuds">
+                <h3>Wireless EarBuds</h3>
+                <p>$99</p>
+                <button onclick="addToCart('Wireless EarBuds', 99)">Add to Cart</button>
+                <button onclick="buyNow('Wireless EarBuds', 99)">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('cartModal')">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div id="cartItems"></div>
+            <button class="checkout-btn" onclick="goToCheckout()">Checkout</button>
+        </div>
+    </div>
+
+    <section id="feedback">
+        <h2>Feedback</h2>
+        <form id="feedbackForm">
+            <label for="feedbackName">Name:</label>
+            <input type="text" id="feedbackName" required>
+            <label for="rating">Rating (1-5):</label>
+            <select id="rating" required>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
+            <label for="comments">Comments:</label>
+            <textarea id="comments" required></textarea>
+            <button type="button" onclick="submitFeedback()">Submit Feedback</button>
+        </form>
+        <div class="feedback-list" id="feedbackList"></div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <label for="contactName">Name:</label>
+            <input type="text" id="contactName" required>
+            <label for="contactEmail">Email:</label>
+            <input type="email" id="contactEmail" required>
+            <label for="message">Message:</label>
+            <textarea id="message" required></textarea>
+            <button type="button" onclick="submitContact()">Send Message</button>
+        </form>
+        <div class="contact-info">
+            <p>Email: support@cybertech.com</p>
+            <p>Phone: +1 (555) 123-4567</p>
+            <p>Address: 123 Tech Street, Cyber City, USA</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo">Cyber Tech</div>
+        <p>Your one-stop shop for the latest tech products.</p>
+        <div>
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#feedback">Feedback</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p>&copy; 2025 Cyber Tech. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Slideshow functionality
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+                dots[i].classList.remove("active");
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].classList.add("active");
+            dots[slideIndex - 1].classList.add("active");
+            setTimeout(showSlides, 5000);
+        }
+
+        function currentSlide(index) {
+            slideIndex = index;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+                dots[i].classList.remove("active");
+            }
+            slides[index].classList.add("active");
+            dots[index].classList.add("active");
+        }
+
+        // Cart functionality
+        let cart = [];
+        document.querySelector(".cart-icon").onclick = () => {
+            document.getElementById("cartModal").style.display = "flex";
+            updateCart();
+        };
+
+        function addToCart(name, price) {
+            cart.push({ name, price, quantity: 1 });
+            updateCartCount();
+            updateCart();
+        }
+
+        function updateCart() {
+            let cartItems = document.getElementById("cartItems");
+            cartItems.innerHTML = "";
+            cart.forEach((item, index) => {
+                let div = document.createElement("div");
+                div.className = "cart-item";
+                div.innerHTML = `
+                    <span>${item.name} - $${item.price} x ${item.quantity}</span>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItems.appendChild(div);
+            });
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            updateCart();
+        }
+
+        function updateCartCount() {
+            document.querySelector(".cart-count").textContent = cart.length;
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        function buyNow(name, price) {
+            cart = [{ name, price, quantity: 1 }];
+            goToCheckout();
+        }
+
+        function goToCheckout() {
+            closeModal("cartModal");
+            window.location.href = 'checkout.html';
+        }
+
+        // Feedback functionality
+        function submitFeedback() {
+            let name = document.getElementById("feedbackName").value;
+            let rating = document.getElementById("rating").value;
+            let comments = document.getElementById("comments").value;
+            if (name && rating && comments) {
+                let feedback = { name, rating, comments };
+                let feedbackList = JSON.parse(localStorage.getItem("feedbackList")) || [];
+                feedbackList.push(feedback);
+                localStorage.setItem("feedbackList", JSON.stringify(feedbackList));
+                displayFeedback();
+                document.getElementById("feedbackForm").reset();
+            }
+        }
+
+        function displayFeedback() {
+            let feedbackList = document.getElementById("feedbackList");
+            feedbackList.innerHTML = "";
+            let feedbacks = JSON.parse(localStorage.getItem("feedbackList")) || [];
+            feedbacks.forEach(feedback => {
+                let div = document.createElement("div");
+                div.className = "feedback-item";
+                div.innerHTML = `
+                    <h3>${feedback.name} - ${feedback.rating}/5</h3>
+                    <p>${feedback.comments}</p>
+                `;
+                feedbackList.appendChild(div);
+            });
+        }
+
+        displayFeedback();
+
+        // Contact form
+        function submitContact() {
+            let name = document.getElementById("contactName").value;
+            let email = document.getElementById("contactEmail").value;
+            let message = document.getElementById("message").value;
+            if (name && email && message) {
+                alert("Message sent successfully! We'll get back to you soon.");
+                document.getElementById("contactForm").reset();
+            }
+        }
+    </script>
+</body>
+</html> 

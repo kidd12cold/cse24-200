@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptops - Cyber Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Cyber Tech</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="phones.html">Phones</a>
+            <a href="laptops.html">Laptops</a>
+            <a href="tablets.html">Tablets</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </div>
+    </header>
+
+    <section>
+        <h2>Laptops</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="C:\Users\GAME\Downloads\Kuzy - Retina 13-inch BLACK Rubberized Hard Case….jpeg" alt="MacBook Air">
+                <h3>MacBook Air</h3>
+                <p>$999</p>
+                <button onclick="addToCart('MacBook Air', 999)">Add to Cart</button>
+                <button onclick="buyNow('MacBook Air', 999)">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="C:\Users\GAME\Downloads\1d7d7251-87c0-4e63-b9f5-fa3e98b723ba.jpeg" alt="Dell XPS 13">
+                <h3>Dell XPS 13</h3>
+                <p>$899</p>
+                <button onclick="addToCart('Dell XPS 13', 899)">Add to Cart</button>
+                <button onclick="buyNow('Dell XPS 13', 899)">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="Acer Aspire 5 Slim Laptop, 15_6 inches Full HD IPS Display, AMD Ryzen 3 3200U, Vega 3 Graphics, 4GB.jpeg" alt="Acer aspire 5">
+                <h3>HP Spectre x360</h3>
+                <p>$799</p>
+                <button onclick="addToCart('Acer aspire 5', 799)">Add to Cart</button>
+                <button onclick="buyNow('Acer aspire 5', 799)">Buy Now</button>
+            </div>
+             <div class="product-card">
+                <img src="C:\Users\GAME\Downloads\Kuzy - Retina 13-inch BLACK Rubberized Hard Case….jpeg" alt="HP Spectre x360">
+                <h3>MacBook Air</h3>
+                <p>$999</p>
+                <button onclick="addToCart('HP Spectre x360', 999)">Add to Cart</button>
+                <button onclick="buyNow('HP Spectre x360', 999)">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="C:\Users\GAME\Downloads\1d7d7251-87c0-4e63-b9f5-fa3e98b723ba.jpeg" alt="MacBook pro">
+                <h3>Dell XPS 13</h3>
+                <p>$899</p>
+                <button onclick="addToCart('MacBook pro', 899)">Add to Cart</button>
+                <button onclick="buyNow('MacBook pro', 899)">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="C:\Users\GAME\Downloads\Acer Aspire 5 Slim Laptop, 15_6 inches Full HD IPS Display, AMD Ryzen 3 3200U, Vega 3 Graphics, 4GB.jpeg" alt="Acer aspire 5">
+                <h3>HP Spectre x360</h3>
+                <p>$799</p>
+                <button onclick="addToCart('HP Spectre x360', 799)">Add to Cart</button>
+                <button onclick="buyNow('HP Spectre x360', 799)">Buy Now</button>
+            </div>
+             <div class="product-card">
+                <img src="C:\Users\GAME\Downloads\Kuzy - Retina 13-inch BLACK Rubberized Hard Case….jpeg" alt="Macs">
+                <h3>MacBook Air</h3>
+                <p>$999</p>
+                <button onclick="addToCart('MacBook Air', 999)">Add to Cart</button>
+                <button onclick="buyNow('MacBook Air', 999)">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="C:\Users\GAME\Downloads\1d7d7251-87c0-4e63-b9f5-fa3e98b723ba.jpeg" alt="Dell">
+                <h3>Dell XPS 13</h3>
+                <p>$899</p>
+                <button onclick="addToCart('Dell XPS 13', 899)">Add to Cart</button>
+                <button onclick="buyNow('Dell XPS 13', 899)">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('cartModal')">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div id="cartItems"></div>
+            <button class="checkout-btn" onclick="goToCheckout()">Checkout</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="logo">Cyber Tech</div>
+        <p>Your one-stop shop for the latest tech products.</p>
+        <div>
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#feedback">Feedback</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p>&copy; 2025 Cyber Tech. All rights reserved.</p>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html> 
